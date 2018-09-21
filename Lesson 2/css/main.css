@@ -1,15 +1,16 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: Arial;
-  background-color: #AE501D; }
+  background-color: #ae501d; }
 
 h1 {
-  color: #FF8442;
+  color: #ff8442;
   margin: 1em auto;
   margin-bottom: 2em;
   text-align: center;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 5em; }
 
 div.main {
@@ -17,7 +18,7 @@ div.main {
   margin: 0 auto; }
   div.main p {
     padding: 1em;
-    color: #FFC2A1; }
+    color: #ffc2a1; }
   div.main aside {
     background: rgba(0, 0, 0, 0.2);
     float: right;
@@ -25,15 +26,13 @@ div.main {
     margin: 0em 1em 1em 1em;
     position: relative; }
     div.main aside h2 {
-      color: #FF8442;
+      color: #ff8442;
       padding-left: 0.66em;
-      font-family: 'Lobster', cursive; }
+      font-family: "Lobster", cursive; }
     div.main aside img {
       position: absolute;
       top: 0;
       left: 60px;
       width: 100px;
-      -webkit-transform: translate(0, -100%);
-              transform: translate(0, -100%);
-      -webkit-filter: invert(1);
-              filter: invert(1); }
+      transform: translate(0, -100%);
+      filter: invert(1); }

@@ -1,19 +1,19 @@
 const gulp = require("gulp");
 const sass = require("gulp-sass");
-const autoprefixer = require("gulp-autoprefixer");
 
-gulp.task("default", function() {
-  console.log("hello world!");
-});
-
-gulp.task("styles", function() {
-  gulp
+// this task is just a function
+gulp.task("styles", function(done) {
+  return gulp
     .src("sass/**/*.scss")
-    .pipe(sass().on("error", sass.logError))
-    .pipe(
-      autoprefixer({
-        browsers: ["last 2 versions"]
-      })
-    )
+    .pipe(sass())
+    .on("error", sass.logError)
     .pipe(gulp.dest("./css"));
 });
+
+// function defaultTask(cb) {
+//   // place code for your default task here
+//   console.log("default task function");
+//   cb();
+// }
+
+// exports.default = defaultTask;
