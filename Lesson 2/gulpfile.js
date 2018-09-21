@@ -1,6 +1,7 @@
 const gulp = require("gulp");
 const sass = require("gulp-sass");
 const autoprefixer = require("gulp-autoprefixer");
+const browserSync = require("browser-sync").create();
 
 // this task is just a function
 gulp.task("styles", function() {
@@ -13,10 +14,14 @@ gulp.task("styles", function() {
         browsers: ["last 2 version"]
       })
     )
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest("./css"))
+    .pipe(browserSync.stream());
 });
 
-gulp.watch("sass/**/*.scss", gulp.series("styles"));
+gulp.task("default", function() {
+  gulp.watch("sass/**/*.scss", gulp.series("styles"));
+  browserSync.init({ server: "./" });
+});
 
 // function defaultTask(cb) {
 //   // place code for your default task here
