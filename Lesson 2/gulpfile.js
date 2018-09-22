@@ -6,6 +6,8 @@ const eslint = require("gulp-eslint");
 const jasmineBrowser = require("gulp-jasmine-browser");
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
+const babel = require("gulp-babel");
+const sourcemaps = require("gulp-sourcemaps");
 
 gulp.task("copy-html", () => {
   return gulp.src("index.html").pipe(gulp.dest("dist"));
@@ -55,7 +57,14 @@ gulp.task("tests", () => {
 gulp.task("scripts", () => {
   return gulp
     .src("js/**/*.js")
+    .pipe(sourcemaps.init())
+    .pipe(
+      babel({
+        presets: ["@babel/env"]
+      })
+    )
     .pipe(concat("all.js"))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest("dist/js"));
 });
 
@@ -63,8 +72,15 @@ gulp.task("scripts", () => {
 gulp.task("scripts-dist", () => {
   return gulp
     .src("js/**/*.js")
+    .pipe(sourcemaps.init())
+    .pipe(
+      babel({
+        presets: ["@babel/env"]
+      })
+    )
     .pipe(concat("all.js"))
     .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest("./dist/js"));
 });
 
