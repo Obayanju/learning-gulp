@@ -8,6 +8,7 @@ const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
 const babel = require("gulp-babel");
 const sourcemaps = require("gulp-sourcemaps");
+const imagemin = require("gulp-imagemin");
 
 gulp.task("copy-html", () => {
   return gulp.src("index.html").pipe(gulp.dest("dist"));
@@ -44,6 +45,13 @@ gulp.task("lint", () => {
       // lint error, return the stream and pipe to failAfterError last.
       .pipe(eslint.failAfterError())
   );
+});
+
+gulp.task("crunch-images", () => {
+  return gulp
+    .src("dist/img/*")
+    .pipe(imagemin())
+    .pipe(gulp.dest("dist/img"));
 });
 
 gulp.task("tests", () => {
@@ -86,9 +94,13 @@ gulp.task("scripts-dist", () => {
 
 // done is the callback passed to signify asyn completion
 gulp.task("dist", done => {
-  gulp.parallel("copy-html", "copy-images", "styles", "lint", "scripts-dist")(
-    done
-  );
+  gulp.parallel(
+    gulp.series("copy-images", "crunch-images"),
+    "copy-html",
+    "styles",
+    "lint",
+    "scripts-dist"
+  )(done);
 });
 
 gulp.task("default", function() {
