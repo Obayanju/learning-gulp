@@ -5,6 +5,7 @@ const browserSync = require("browser-sync").create();
 const eslint = require("gulp-eslint");
 const jasmineBrowser = require("gulp-jasmine-browser");
 const concat = require("gulp-concat");
+const uglify = require("gulp-uglify-es").default;
 
 gulp.task("copy-html", () => {
   return gulp.src("index.html").pipe(gulp.dest("dist"));
@@ -58,10 +59,12 @@ gulp.task("scripts", () => {
     .pipe(gulp.dest("dist/js"));
 });
 
+// minify JS - only on production
 gulp.task("scripts-dist", () => {
   return gulp
     .src("js/**/*.js")
     .pipe(concat("all.js"))
+    .pipe(uglify())
     .pipe(gulp.dest("./dist/js"));
 });
 
