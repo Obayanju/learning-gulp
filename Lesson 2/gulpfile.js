@@ -68,6 +68,13 @@ gulp.task("scripts-dist", () => {
     .pipe(gulp.dest("./dist/js"));
 });
 
+// done is the callback passed to signify asyn completion
+gulp.task("dist", done => {
+  gulp.parallel("copy-html", "copy-images", "styles", "lint", "scripts-dist")(
+    done
+  );
+});
+
 gulp.task("default", function() {
   gulp.watch("sass/**/*.scss", gulp.series("styles"));
   gulp.watch("js/*.js", gulp.series("lint"));

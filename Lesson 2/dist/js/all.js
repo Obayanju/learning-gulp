@@ -1,1 +1,1 @@
-function getWindowHeight(){return window.innerHeight}
+window.innerHeight;

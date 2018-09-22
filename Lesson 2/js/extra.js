@@ -1,3 +1,3 @@
-function getWindowHeight() {
+(function getWindowHeight() {
   return window.innerHeight;
-}
+})();
